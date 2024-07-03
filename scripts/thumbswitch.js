@@ -1,3 +1,6 @@
+currentPics = 0;
+
+
 /*
     waitForEl(el) is a modified version of: https://stackoverflow.com/a/60062546
 */
@@ -13,10 +16,23 @@ function waitForEl(el) {
     });
 }
 
+function waitForMore(el) {
+    return new Promise((resolve, reject) => {
+        const intervalId = setInterval(() => {
+        if (document.querySelectorAll(el).length > currentPics) {
+            clearInterval(intervalId);
+            resolve();
+        }
+        }, 500);
+    });
+}
+
 
 function randomize(){
     waitForEl(".yt-core-image").then(() => {
         const images = document.querySelectorAll(".yt-core-image");
+
+        currentPics = images.length;
 
         if(images){
             console.log(images.length);
@@ -38,11 +54,12 @@ function randomize(){
             }
             img.src = src;
         });
-
-        
-
-
         console.log("done!!");
+
+        waitForMore(".yt-core-image").then(() => {
+            randomize();
+        });
+
         //randomize();
     });
 }
