@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "YT Thumbnail Switcher",
+    "description": "Switches the thumbnails of videos randomly",
+    "version": "1.0",
+    "action": {
+        "default_popup": "index.html",
+        "default_icon": "default.png"
+    },
+    "content_scripts": [ {
+        "matches": [
+            "https://*/*",
+            "https://youtube.com/"
+        ],
+        "js": ["scripts/thumbswitch.js"],
+        "run_at": "document_end"
+    } ] 
+}
