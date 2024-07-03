@@ -20,9 +20,15 @@ function randomize(){
         if(images){
             console.log(images.length)
         }
+
+        images.forEach(img => {
+            console.log(img.src)
+        });
+
         console.log("done!!")
-        randomize();
+        //randomize();
     });
 }
 
 
+randomize();
